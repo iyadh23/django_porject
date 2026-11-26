@@ -14,6 +14,9 @@ class Doctor(User):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     specialities = models.ManyToManyField("AccountApp.Specialty", related_name="doctors")
+    class Meta:
+        verbose_name = "Doctor"
+        verbose_name_plural = "Doctors"
 
 number_validator = RegexValidator(
             regex=r'^\d{8}$',
@@ -30,11 +33,19 @@ class Patient(User):
     birth_date = models.DateField(validators=[validate_birth_date])
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    class Meta:
+        verbose_name = "Patient"
+        verbose_name_plural = "Patients"
 
 class Specialty(models.Model):
     name=models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    class Meta:
+        verbose_name = "Specialty"
+        verbose_name_plural = "Specialties"
+    def __str__(self):
+        return self.name
 
     
     
